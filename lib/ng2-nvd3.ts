@@ -222,6 +222,7 @@ export class nvD3 {
 
 @NgModule({
   declarations: [
+    nvD3
   ],
   imports: [
     CommonModule
