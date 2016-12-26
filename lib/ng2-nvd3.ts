@@ -1,5 +1,4 @@
 import {CommonModule} from '@angular/common';
-import {PlatformModule} from '../core/platform/index';
 import { Component, OnInit, OnChanges, ElementRef, Inject } from '@angular/core';
 declare var d3, nv: any;
 
