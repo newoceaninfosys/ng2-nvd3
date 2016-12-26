@@ -1,5 +1,5 @@
 import {CommonModule} from '@angular/common';
-import { Component, OnInit, OnChanges, ElementRef, Inject } from '@angular/core';
+import { NgModule, Component, OnInit, OnChanges, ElementRef, Inject } from '@angular/core';
 declare var d3, nv: any;
 
 @Component({
@@ -224,8 +224,7 @@ export class nvD3 {
   declarations: [
   ],
   imports: [
-    CommonModule,
-    PlatformModule,
+    CommonModule
   ],
   exports: [
     nvD3
