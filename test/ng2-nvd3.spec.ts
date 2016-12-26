@@ -1,6 +1,6 @@
 import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
 import {NgModule, Component, OnInit} from '@angular/core';
-import {nvD3Module} from '../lib/ng2-nvd3';
+import {NvD3Module} from '../lib/ng2-nvd3';
 
 declare let describe, beforeEach, it, expect, d3: any;
 let currentChartType: string;
@@ -40,27 +40,23 @@ const chartTypes = [
 })
 
 class Main {
-  options;
-  data;
-  ngOnInit(){
-    this.options = allOptions[currentChartType];
-    this.data = allData[currentChartType];
-  }
+
 }
 
 @NgModule({
     bootstrap: [Main],
-    declarations: [
-        
-    ],
     imports: [ // import Angular's modules
-       nvD3Module
-    ],
-    providers: [ // expose our Services and Providers into Angular's dependency injection
-       
+      NvD3Module
     ]
 })
-class MainModule {}
+class MainModule {
+  options;
+  data;
+  ngOnInit(){
+  this.options = allOptions[currentChartType];
+  this.data = allData[currentChartType];
+}
+}
 
 //
 // Define Tests

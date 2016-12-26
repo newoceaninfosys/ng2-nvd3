@@ -13,3 +13,5 @@ export declare class nvD3 {
     configureEvents(dispatch: any, options: any): void;
     clearElement(): void;
 }
+export declare class NvD3Module {
+}
