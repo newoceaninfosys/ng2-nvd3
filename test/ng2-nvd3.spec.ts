@@ -1,6 +1,6 @@
-import {bootstrap} from '@angular/platform-browser-dynamic';
-import {Component, OnInit} from '@angular/core';
-import {nvD3} from '../lib/ng2-nvd3';
+import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
+import {NgModule, Component, OnInit} from '@angular/core';
+import {nvD3Module} from '../lib/ng2-nvd3';
 
 declare let describe, beforeEach, it, expect, d3: any;
 let currentChartType: string;
@@ -31,7 +31,6 @@ const chartTypes = [
 //
 @Component({
   selector: 'main',
-  directives: [nvD3],
   template: `
     <div>
       <h1 class="type">{{options.chart.type}}</h1>
@@ -48,6 +47,20 @@ class Main {
     this.data = allData[currentChartType];
   }
 }
+
+@NgModule({
+    bootstrap: [Main],
+    declarations: [
+        
+    ],
+    imports: [ // import Angular's modules
+       nvD3Module
+    ],
+    providers: [ // expose our Services and Providers into Angular's dependency injection
+       
+    ]
+})
+class MainModule {}
 
 //
 // Define Tests
@@ -76,7 +89,8 @@ const runTests = () => {
     chartTypes.forEach((type) => {
       it(type + ' chart type should be created correctly', (done) => {
         currentChartType = type;
-        bootstrap(Main)
+        platformBrowserDynamic()
+          .bootstrapModule(MainModule)
           .then((main) => {
             let options = main.instance.options;
             let h1 = document.querySelector('.type');
