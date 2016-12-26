@@ -206,7 +206,9 @@ var NvD3Module = (function () {
     }
     NvD3Module = __decorate([
         core_1.NgModule({
-            declarations: [],
+            declarations: [
+                nvD3
+            ],
             imports: [
                 common_1.CommonModule
             ],
