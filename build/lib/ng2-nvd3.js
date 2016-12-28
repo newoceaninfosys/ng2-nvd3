@@ -105,12 +105,16 @@ var nvD3 = (function () {
             },
             callback: function (graph) {
                 nv.utils.windowResize(function () {
-                    self.chart && self.chart.update && self.chart.update();
+                    self.update();
                 });
-                self.chart && self.chart.update && self.chart.update();
+                self.update();
                 options.chart['callback'] && options.chart['callback']();
             }
         });
+    };
+    nvD3.prototype.update = function () {
+        var self = this;
+        self.chart && self.chart.update && self.chart.update();
     };
     nvD3.prototype.updateWithData = function (data) {
         if (data) {
@@ -210,10 +214,6 @@ var nvD3 = (function () {
         core_1.Input(), 
         __metadata('design:type', Object)
     ], nvD3.prototype, "data", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', Object)
-    ], nvD3.prototype, "config", void 0);
     nvD3 = __decorate([
         core_1.Component({
             selector: 'nvd3',
