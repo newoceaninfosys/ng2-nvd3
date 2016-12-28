@@ -139,14 +139,13 @@ import {nvD3} from 'ng2-nvd3';
 
 @Component({
   selector: 'main',
-  directives: [nvD3],
-  template: `<div><nvd3 [options]="options" [data]="data"></nvd3></div>`
+  template: `<div><nvd3 #chart [options]="options" [data]="data"></nvd3></div>`
 })
 export class Main {
   options;
   data;
 
-  @ViewChild(nvD3)
+  @ViewChild('chart')
   nvD3: nvD3;
 
   ngOnInit(){
@@ -157,7 +156,7 @@ export class Main {
   ngAfterViewInit() {
     // this.nvD3 - directive instance
     // for example, to update the chart
-    this.nvD3.chart.update()
+    this.nvD3.update();
   } 
 }
 ```
@@ -167,6 +166,9 @@ export class Main {
     npm test
     
 ## Change Log
+
+#### 1.1.4 (master)
+* Angular2 - v2.2.1
 
 #### 1.1.3 (master)
 * Angular2 - v2.0.0-rc4 
