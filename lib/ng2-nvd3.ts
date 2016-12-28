@@ -12,13 +12,13 @@ declare const d3, nv: any;
             width: 100%;
           }
         `
-    ]
+    ],
+    exportAs: 'nvd3'
 })
 
 export class nvD3 implements OnChanges {
     @Input() options: any;
     @Input() data: any;
-    @Input() config: any;
     private el: any;
     private chart: any;
     private svg: any;
@@ -171,14 +171,19 @@ export class nvD3 implements OnChanges {
                     //   .transition().duration(0)
                     //   .call(graph);
 
-                    self.chart && self.chart.update && self.chart.update();
+                    self.update();
                 });
 
-                self.chart && self.chart.update && self.chart.update();
+                self.update();
 
                 options.chart['callback'] && options.chart['callback']();
             }
         });
+    }
+
+    update() {
+        let self = this;
+        self.chart && self.chart.update && self.chart.update();
     }
 
     updateWithData(data) {
@@ -284,8 +289,7 @@ export class nvD3 implements OnChanges {
     declarations: [
         nvD3
     ],
-    imports: [
-    ],
+    imports: [],
     exports: [
         nvD3
     ],

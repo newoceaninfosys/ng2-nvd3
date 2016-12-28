@@ -221,7 +221,8 @@ var nvD3 = (function () {
             encapsulation: core_1.ViewEncapsulation.None,
             styles: [
                 "\n          nvd3 {\n            display: block;\n            width: 100%;\n          }\n        "
-            ]
+            ],
+            exportAs: 'nvd3'
         }), 
         __metadata('design:paramtypes', [core_1.ElementRef])
     ], nvD3);
