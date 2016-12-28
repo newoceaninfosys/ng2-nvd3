@@ -108,7 +108,7 @@ var nvD3 = (function () {
                     self.chart && self.chart.update && self.chart.update();
                 });
                 self.chart && self.chart.update && self.chart.update();
-                options.chart['callback']();
+                options.chart['callback'] && options.chart['callback']();
             }
         });
     };
