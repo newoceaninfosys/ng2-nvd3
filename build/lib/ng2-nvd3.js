@@ -8,16 +8,14 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var __param = (this && this.__param) || function (paramIndex, decorator) {
-    return function (target, key) { decorator(target, key, paramIndex); }
-};
-var common_1 = require('@angular/common');
 var core_1 = require('@angular/core');
 var nvD3 = (function () {
     function nvD3(elementRef) {
+        this.elementRef = elementRef;
         this.el = elementRef.nativeElement;
     }
     nvD3.prototype.ngOnChanges = function () {
+        var self = this;
         this.updateWithOptions(this.options);
     };
     nvD3.prototype.updateWithOptions = function (options) {
@@ -31,7 +29,8 @@ var nvD3 = (function () {
             if (!this.chart.hasOwnProperty(key))
                 continue;
             var value = this.chart[key];
-            if (key[0] === '_') { }
+            if (key[0] === '_') {
+            }
             else if ([
                 'clearHighlights',
                 'highlightPoint',
@@ -42,9 +41,10 @@ var nvD3 = (function () {
                 'open',
                 'close',
                 'tooltipContent'
-            ].indexOf(key) >= 0) { }
+            ].indexOf(key) >= 0) {
+            }
             else if (key === 'dispatch')
-                this.configureEvents(this.chart[key], options.chart[key]);
+                nvD3.configureEvents(this.chart[key], options.chart[key]);
             else if ([
                 'bars',
                 'bars1',
@@ -83,29 +83,39 @@ var nvD3 = (function () {
                 (key === 'stacked' && options.chart.type === 'stackedAreaChart')) {
                 this.configure(this.chart[key], options.chart[key], options.chart.type);
             }
-            else if ((key === 'xTickFormat' || key === 'yTickFormat') && options.chart.type === 'lineWithFocusChart') { }
-            else if ((key === 'tooltips') && options.chart.type === 'boxPlotChart') { }
-            else if ((key === 'tooltipXContent' || key === 'tooltipYContent') && options.chart.type === 'scatterChart') { }
-            else if (options.chart[key] === undefined || options.chart[key] === null) { }
+            else if ((key === 'xTickFormat' || key === 'yTickFormat') && options.chart.type === 'lineWithFocusChart') {
+            }
+            else if ((key === 'tooltips') && options.chart.type === 'boxPlotChart') {
+            }
+            else if ((key === 'tooltipXContent' || key === 'tooltipYContent') && options.chart.type === 'scatterChart') {
+            }
+            else if (options.chart[key] === undefined || options.chart[key] === null) {
+            }
             else
                 this.chart[key](options.chart[key]);
         }
         this.updateWithData(this.data);
-        nv.addGraph(function () {
-            if (!self.chart)
-                return;
-            if (self.chart.resizeHandler)
-                self.chart.resizeHandler.clear();
-            self.chart.resizeHandler = nv.utils.windowResize(function () {
+        nv.addGraph({
+            generate: function () {
+                if (!self.chart)
+                    return;
+                if (self.chart.resizeHandler)
+                    self.chart.resizeHandler.clear();
+                return self.chart;
+            },
+            callback: function (graph) {
+                nv.utils.windowResize(function () {
+                    self.chart && self.chart.update && self.chart.update();
+                });
                 self.chart && self.chart.update && self.chart.update();
-            });
-            return self.chart;
-        }, options.chart['callback']);
+                options.chart['callback']();
+            }
+        });
     };
     nvD3.prototype.updateWithData = function (data) {
         if (data) {
             d3.select(this.el).select('svg').remove();
-            var h, w;
+            var h = void 0, w = void 0;
             this.svg = d3.select(this.el).append('svg');
             if (h = this.options.chart.height) {
                 if (!isNaN(+h))
@@ -129,9 +139,10 @@ var nvD3 = (function () {
                 if (!chart.hasOwnProperty(key))
                     continue;
                 var value = chart[key];
-                if (key[0] === '_') { }
+                if (key[0] === '_') {
+                }
                 else if (key === 'dispatch')
-                    this.configureEvents(value, options[key]);
+                    nvD3.configureEvents(value, options[key]);
                 else if (key === 'tooltip')
                     this.configure(chart[key], options[key], chartType);
                 else if (key === 'contentGenerator') {
@@ -151,20 +162,22 @@ var nvD3 = (function () {
                     'open',
                     'close'
                 ].indexOf(key) === -1) {
-                    if (options[key] === undefined || options[key] === null) { }
+                    if (options[key] === undefined || options[key] === null) {
+                    }
                     else
                         chart[key](options[key]);
                 }
             }
         }
     };
-    nvD3.prototype.configureEvents = function (dispatch, options) {
+    nvD3.configureEvents = function (dispatch, options) {
         if (dispatch && options) {
             for (var key in dispatch) {
                 if (!dispatch.hasOwnProperty(key))
                     continue;
                 var value = dispatch[key];
-                if (options[key] === undefined || options[key] === null) { }
+                if (options[key] === undefined || options[key] === null) {
+                }
                 else
                     dispatch.on(key + '._', options[key]);
             }
@@ -189,13 +202,27 @@ var nvD3 = (function () {
             this.chart.resizeHandler.clear();
         this.chart = null;
     };
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], nvD3.prototype, "options", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], nvD3.prototype, "data", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], nvD3.prototype, "config", void 0);
     nvD3 = __decorate([
         core_1.Component({
             selector: 'nvd3',
-            inputs: ['options', 'data'],
-            template: ""
-        }),
-        __param(0, core_1.Inject(core_1.ElementRef)), 
+            template: "",
+            encapsulation: core_1.ViewEncapsulation.None,
+            styles: [
+                "\n          nvd3 {\n            display: block;\n            width: 100%;\n          }\n        "
+            ]
+        }), 
         __metadata('design:paramtypes', [core_1.ElementRef])
     ], nvD3);
     return nvD3;
@@ -209,9 +236,7 @@ var NvD3Module = (function () {
             declarations: [
                 nvD3
             ],
-            imports: [
-                common_1.CommonModule
-            ],
+            imports: [],
             exports: [
                 nvD3
             ],
