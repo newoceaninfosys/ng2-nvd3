@@ -176,7 +176,7 @@ export class nvD3 implements OnChanges {
 
                 self.chart && self.chart.update && self.chart.update();
 
-                options.chart['callback']();
+                options.chart['callback'] && options.chart['callback']();
             }
         });
     }

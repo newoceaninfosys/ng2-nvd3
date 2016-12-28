@@ -13,9 +13,9 @@ Online demos:
 
 ## Install
 
-    npm install ng2-nvd3
+    npm install ng2-nvd3 d3@^3 nvd3
     
-it requires `angular2`, `d3` and `nvd3` as dependencies. Tested with the current `@angular` version `^2.0.0-rc.4`.
+it requires `angular2`, `d3` and `nvd3` as dependencies. Tested with the current `@angular` version `^2.2.1`.
     
 ## Basic usage
 
@@ -25,13 +25,12 @@ Note: `d3` and `nvd3` should be also included in your project bundle.
 Simple discrete bar chart: 
     
 ```js
+app.component.ts
+
 import {Component, OnInit} from '@angular/core';
-import {nvD3} from 'ng2-nvd3'
-declare let d3: any;
 
 @Component({
   selector: 'main',
-  directives: [nvD3],
   template: `
     <div>
       <nvd3 [options]="options" [data]="data"></nvd3>
@@ -111,6 +110,23 @@ export class Main implements OnInit{
   }
 
 }
+
+app.module.ts
+
+import { NgModule }      from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { Main }  from 'app.component';
+
+import 'd3';
+import 'nvd3';
+import {NvD3Module} from 'ng2-nvd3';
+
+@NgModule({
+  imports:      [ BrowserModule, NvD3Module ],
+  declarations: [ Main ],
+  bootstrap:    [ Main ]
+})
+export class AppModule { }
 ```    
 
 ### Usage directive `api`
