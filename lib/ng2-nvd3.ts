@@ -1,7 +1,6 @@
 /// <reference path="../typings/globals/d3/index.d.ts" />
 /// <reference path="../typings/globals/nvd3/index.d.ts" />
 import {NgModule, Component, OnChanges, ElementRef, Input, ViewEncapsulation} from '@angular/core';
-declare const d3, nv: any;
 
 @Component({
     selector: 'nvd3',
@@ -272,10 +271,10 @@ export class nvD3 implements OnChanges {
         }
 
         // To be compatible with old nvd3 (v1.7.1)
-        if (nv.graphs && this.chart) {
-            for (let i = nv.graphs.length - 1; i >= 0; i--) {
-                if (nv.graphs[i] && (nv.graphs[i].id === this.chart.id)) {
-                    nv.graphs.splice(i, 1);
+        if (nv['graphs'] && this.chart) {
+            for (let i = nv['graphs'].length - 1; i >= 0; i--) {
+                if (nv['graphs'][i] && (nv['graphs'][i].id === this.chart.id)) {
+                    nv['graphs'].splice(i, 1);
                 }
             }
         }
