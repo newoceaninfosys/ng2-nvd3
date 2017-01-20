@@ -192,10 +192,10 @@ var nvD3 = (function () {
         if (this.chart && this.chart.tooltip && this.chart.tooltip.id) {
             d3.select('#' + this.chart.tooltip.id()).remove();
         }
-        if (nv.graphs && this.chart) {
-            for (var i = nv.graphs.length - 1; i >= 0; i--) {
-                if (nv.graphs[i] && (nv.graphs[i].id === this.chart.id)) {
-                    nv.graphs.splice(i, 1);
+        if (nv['graphs'] && this.chart) {
+            for (var i = nv['graphs'].length - 1; i >= 0; i--) {
+                if (nv['graphs'][i] && (nv['graphs'][i].id === this.chart.id)) {
+                    nv['graphs'].splice(i, 1);
                 }
             }
         }
