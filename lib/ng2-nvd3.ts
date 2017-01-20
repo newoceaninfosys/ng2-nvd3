@@ -1,3 +1,5 @@
+/// <reference path="../typings/globals/d3/index.d.ts" />
+/// <reference path="../typings/globals/nvd3/index.d.ts" />
 import {NgModule, Component, OnChanges, ElementRef, Input, ViewEncapsulation} from '@angular/core';
 declare const d3, nv: any;
 
