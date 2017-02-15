@@ -1,4 +1,3 @@
-"use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,8 +7,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var nvD3 = (function () {
+import { NgModule, Component, ElementRef, Input, ViewEncapsulation } from '@angular/core';
+var nvD3 = nvD3_1 = (function () {
     function nvD3(elementRef) {
         this.elementRef = elementRef;
         this.el = elementRef.nativeElement;
@@ -44,7 +43,7 @@ var nvD3 = (function () {
             ].indexOf(key) >= 0) {
             }
             else if (key === 'dispatch')
-                nvD3.configureEvents(this.chart[key], options.chart[key]);
+                nvD3_1.configureEvents(this.chart[key], options.chart[key]);
             else if ([
                 'bars',
                 'bars1',
@@ -146,7 +145,7 @@ var nvD3 = (function () {
                 if (key[0] === '_') {
                 }
                 else if (key === 'dispatch')
-                    nvD3.configureEvents(value, options[key]);
+                    nvD3_1.configureEvents(value, options[key]);
                 else if (key === 'tooltip')
                     this.configure(chart[key], options[key], chartType);
                 else if (key === 'contentGenerator') {
@@ -206,44 +205,44 @@ var nvD3 = (function () {
             this.chart.resizeHandler.clear();
         this.chart = null;
     };
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', Object)
-    ], nvD3.prototype, "options", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', Object)
-    ], nvD3.prototype, "data", void 0);
-    nvD3 = __decorate([
-        core_1.Component({
-            selector: 'nvd3',
-            template: "",
-            encapsulation: core_1.ViewEncapsulation.None,
-            styles: [
-                "\n          nvd3 {\n            display: block;\n            width: 100%;\n          }\n        "
-            ],
-            exportAs: 'nvd3'
-        }), 
-        __metadata('design:paramtypes', [core_1.ElementRef])
-    ], nvD3);
     return nvD3;
 }());
-exports.nvD3 = nvD3;
+__decorate([
+    Input(),
+    __metadata("design:type", Object)
+], nvD3.prototype, "options", void 0);
+__decorate([
+    Input(),
+    __metadata("design:type", Object)
+], nvD3.prototype, "data", void 0);
+nvD3 = nvD3_1 = __decorate([
+    Component({
+        selector: 'nvd3',
+        template: "",
+        encapsulation: ViewEncapsulation.None,
+        styles: [
+            "\n          nvd3 {\n            display: block;\n            width: 100%;\n          }\n        "
+        ],
+        exportAs: 'nvd3'
+    }),
+    __metadata("design:paramtypes", [ElementRef])
+], nvD3);
+export { nvD3 };
 var NvD3Module = (function () {
     function NvD3Module() {
     }
-    NvD3Module = __decorate([
-        core_1.NgModule({
-            declarations: [
-                nvD3
-            ],
-            imports: [],
-            exports: [
-                nvD3
-            ],
-        }), 
-        __metadata('design:paramtypes', [])
-    ], NvD3Module);
     return NvD3Module;
 }());
-exports.NvD3Module = NvD3Module;
+NvD3Module = __decorate([
+    NgModule({
+        declarations: [
+            nvD3
+        ],
+        imports: [],
+        exports: [
+            nvD3
+        ],
+    })
+], NvD3Module);
+export { NvD3Module };
+var nvD3_1;
