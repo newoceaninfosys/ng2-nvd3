@@ -1,6 +1,6 @@
 /// <reference path="../typings/globals/d3/index.d.ts" />
 /// <reference path="../typings/globals/nvd3/index.d.ts" />
-import {NgModule, Component, OnChanges, ElementRef, Input, ViewEncapsulation} from '@angular/core';
+import {NgModule, Component, OnChanges, ElementRef, Input, ViewEncapsulation, SimpleChanges} from '@angular/core';
 
 @Component({
     selector: 'nvd3',
@@ -28,7 +28,7 @@ export class nvD3 implements OnChanges {
         this.el = elementRef.nativeElement;
     }
 
-    ngOnChanges() {
+    ngOnChanges(changes: SimpleChanges) {
         let self = this;
 
         this.updateWithOptions(this.options);

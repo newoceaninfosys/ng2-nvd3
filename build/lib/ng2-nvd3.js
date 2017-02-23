@@ -13,7 +13,7 @@ var nvD3 = nvD3_1 = (function () {
         this.elementRef = elementRef;
         this.el = elementRef.nativeElement;
     }
-    nvD3.prototype.ngOnChanges = function () {
+    nvD3.prototype.ngOnChanges = function (changes) {
         var self = this;
         this.updateWithOptions(this.options);
     };
