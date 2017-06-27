@@ -1,22 +1,20 @@
 {
+  "compileOnSave": false,
   "compilerOptions": {
-    "target": "es5",
-    "module": "commonjs",
+    "outDir": "./dist/out-tsc",
+    "baseUrl": "src",
+    "sourceMap": true,
+    "declaration": false,
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "removeComments": true,
-    "noImplicitAny": false,
-    "declaration": true,
-    "sourceMap": false,
-    "outDir": "build"
-  },
-  "files": [
-    "lib/ng2-nvd3.ts",
-    "test/ng2-nvd3.spec.ts",
-    "test/vendor.ts",
-    "test/spec.d.ts",
-    "typings/browser.d.ts",
-    "typings/index.d.ts"
-  ]
+    "target": "es5",
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "lib": [
+      "es2016",
+      "dom"
+    ]
+  }
 }

@@ -1,52 +1,33 @@
+// Karma configuration file, see link for more information
+// https://karma-runner.github.io/0.13/config/configuration-file.html
+
 module.exports = function (config) {
   config.set({
-    basePath: '.',
-    files: [
-      'test/vendor.ts',
-      'test/*.spec.ts'
+    basePath: '',
+    frameworks: ['jasmine', '@angular/cli'],
+    plugins: [
+      require('karma-jasmine'),
+      require('karma-chrome-launcher'),
+      require('karma-jasmine-html-reporter'),
+      require('karma-coverage-istanbul-reporter'),
+      require('@angular/cli/plugins/karma')
     ],
-    preprocessors: {
-      'test/vendor.ts': ['webpack', 'sourcemap'],
-      'test/*.spec.ts': ['webpack', 'sourcemap']
+    client:{
+      clearContext: false // leave Jasmine Spec Runner output visible in browser
     },
-    webpack: {
-      devtool: 'source-map',
-      module: {
-        loaders: [
-          {
-            test: /\.ts/,
-            loaders: ['ts-loader'],
-            exclude: /node_modules/
-          }
-        ]
-      },
-      resolve: {
-        extensions: ["", ".js", ".ts"]
-      }
+    coverageIstanbulReporter: {
+      reports: [ 'html', 'lcovonly' ],
+      fixWebpackSourcePaths: true
     },
-    webpackServer: {
-      noInfo: true
+    angularCli: {
+      environment: 'dev'
     },
-    frameworks: ['jasmine'],
+    reporters: ['progress', 'kjhtml'],
+    port: 9876,
+    colors: true,
+    logLevel: config.LOG_INFO,
     autoWatch: true,
     browsers: ['Chrome'],
-    customLaunchers: {
-      chrome_travis_ci: {
-        base: 'Chrome',
-        flags: ['--no-sandbox']
-      }
-    },
-    reporters: ['progress', 'coverage'],
-    coverageReporter: {
-      type: 'html',
-      dir: 'coverage/'
-    },
-    exclude: [],
-    port: 9876
+    singleRun: false
   });
-
-  if (process.env.TRAVIS) {
-    config.browsers = ['chrome_travis_ci'];
-    config.singleRun = true;
-  }
 };
