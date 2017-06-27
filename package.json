@@ -19,7 +19,7 @@
     "test": "karma start karma.conf.js",
     "build": "rimraf build && tsc",
     "build:aot": "rimraf build && ngc -p tsconfig-aot.json",
-    "prepublish": "typings install && npm run build"
+    "prepublish": "typings install && npm run build:aot"
   },
   "author": "Konstantin Skipor",
   "repository": {
@@ -27,6 +27,13 @@
     "url": "https://github.com/krispo/ng2-nvd3.git"
   },
   "devDependencies": {
+    "@angular/common": "~4.1.2",
+    "@angular/compiler": "~4.1.2",
+    "@angular/compiler-cli": "^2.4.7",
+    "@angular/core": "~4.1.2",
+    "@angular/platform-browser": "~4.1.2",
+    "@angular/platform-browser-dynamic": "~4.1.2",
+    "@angular/platform-server": "~4.1.2",
     "es6-promise": "^3.0",
     "es6-shim": "^0.35",
     "jasmine-core": "^2.4.1",

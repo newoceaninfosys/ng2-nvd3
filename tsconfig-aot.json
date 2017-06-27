@@ -9,6 +9,7 @@
     "noImplicitAny": false,
     "declaration": true,
     "sourceMap": false,
+	"skipLibCheck": true,
     "outDir": "build"
   },
   "files": [
