@@ -15,6 +15,7 @@
     ]
   },
   "files": [
+    "../index.ts",
     "./lib/ng2-nvd3.ts"
   ],
   "angularCompilerOptions": {

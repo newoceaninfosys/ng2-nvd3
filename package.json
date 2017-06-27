@@ -11,7 +11,7 @@
     "e2e": "ng e2e",
     "build:aot": "rimraf dist && ngc -p src/tsconfig.aot.json"
   },
-  "main": "./dist/ng2-nvd3.js",
+  "main": "./dist/index.js",
   "author": "Shawn Dao <sang.dao@newoceaninfosys.com>",
   "private": true,
   "dependencies": {
